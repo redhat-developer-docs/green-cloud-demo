@@ -1,12 +1,11 @@
 # We use Travis for the following tasks:
-# - Updating the Sonarqube stats when not on a PR
-# - Update Codecov (codecov.io) stats for every build
 # - Regenerate the docs when commit on master (but not for a PR)
 language: java
 jdk:
   - oraclejdk8
 script:
+  - mvn test -B 
    # Only build docs when commited on master and not a pull request.
    # See https://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables
    # for more details about Travis default vars
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh doc/ci-docs.sh; else true; fi
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh doc/ci-docs.sh;cd .. else true; fi
