@@ -2,7 +2,6 @@ echo ============================================
 echo Deploying Green Cloud Demo Documentation
 echo ============================================
 
-cd doc && \
 mvn -Phtml,pdf package && \
 git clone -b gh-pages https://kameshsampath:${GITHUB_TOKEN}@github.com/redhat-developer-docs/green-cloud-demo.git gh-pages && \
 git config --global user.email "kamesh.sampath@hotmail.com" && \
