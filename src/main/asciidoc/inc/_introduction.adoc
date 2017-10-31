@@ -14,29 +14,27 @@ to https://www.openshift.com[OpenShift], i.e. the build process, the ideal platf
 .History of Microservices
 image::./History_Of_Microservices.png[title=Short History of Microservices,align=center]
 
-Most of the https://netflix.github.io/[Netflix OSS] components listed above are pretty old and optimized more for AWS, they are prone to some common DevOps
-pain-points for organizations that are starting to adopt DevOps. The migration that will be done as part of this demo will help in alleviating those possible
-DevOps pain-points and provide the organizations a direction on **How to migrate my Spring Boot Application to OpenShift**
+Most of the https://netflix.github.io/[Netflix OSS] components listed above are pretty old and were optimized more for AWS. Some of those components are prone to some common DevOps pain-points for organizations starting to adopt DevOps. The migration that will be done as part of this demo will help in alleviating those possible
+DevOps pain-points and provide the organizations a direction on **How to migrate Spring Boot Application to OpenShift**
 
 == App Overview 
-In this demo, the https://github.com/kameshsampath/brewery[Spring Cloud Samples - Brewery] will be migrated 
-and optimized for OpenShift, during the process of migration the original https://github.com/spring-cloud-samples/brewery[Spring Cloud Samples - Brewery]
-will be modified to make it deployable on to https://kubernetes.io[Kubernetes] or https://www.openshift.com[Openshift].
+In this demo, the https://github.com/kameshsampath/brewery[Spring Cloud Samples - Brewery] was migrated 
+and optimized for https://www.openshift.com[OpenShift], during the process of migration the original https://github.com/spring-cloud-samples/brewery[Spring Cloud Samples - Brewery]
+was modified to make it deployable on to https://kubernetes.io[Kubernetes] or https://www.openshift.com[OpenShift].
 
-The application will be migrated based on these iterations,
+The application was migrated iteratively,
 
-* [*] <<iteration-1>> - As-is deployment of the https://github.com/spring-cloud-samples/brewery[Spring Cloud Samples - Brewery]
-with no code change.  The Application build process will be modified to enable easier deployment of application on Openshift
+* [*] <<iteration-1>> - As-is deployment of the https://github.com/spring-cloud-samples/brewery[Spring Cloud Samples - Brewery] with no code change.  The application build process was be modified to enable easier deployment of application on Openshift
 
-* [*] <<iteration-2>> - Will use native OpenShift/Kubernetes features such as service discovery, loadbalancing & externalization of the config
+* [*] <<iteration-2>> - Use native https://kubernetes.io[Kubernetes] / https://www.openshift.com[OpenShift] features such as service discovery, loadbalancing & externalization of the config
 
-* [*] <<iteration-3>> - Optimizing stacks on OpenShift, like Apache Artemis instead of RabbitMQ, using OpenTracing and Jaeger
+* [*] <<iteration-3>> - Optimizing stacks on ttps://www.openshift.com[OpenShift], like Apache Artemis instead of RabbitMQ, using http://opentracing.io/[OpenTracing] and https://uber.github.io/jaeger/[Jaeger]
 
 [[default-pre-req]]
 == Pre-Requisite
 
 You have a OpenShift cluster running locally using https://docs.openshift.org/latest/minishift/getting-started/index.html[*minishift*]
-or https://developers.redhat.com/products/cdk/overview/Op[*CDK*], or
+or https://developers.redhat.com/products/cdk/download/[*CDK*], or
 have access to https://www.openshift.com/container-platform/index.html[*OpenShift Container Platform*]
 
 Check the <<res-tools>> section for more details

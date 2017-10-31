@@ -6,9 +6,12 @@ use
 
 * https://activemq.apache.org/artemis/[Apache Artemis] in place of RabbitMQ
 * http://opentracing.io/[OpenTracing] for tracing and  https://uber.github.io/jaeger/[Jaeger] in place of Zipkin
-* Native Kubernetes based Load Balancing instead of Ribbon 
+* Native Kubernetes based Load Balancing instead of Ribbon
 
-This iteration has obsoleted many modules/projects from source tree, refer to the <<itr3-deprecated-modules,deprecate>> section for more details.
+[[itr3-java-msa-platform-circa]]
+image::./iteration-3_java_msa_circa.png[title=Java Microservices,align=center]
+
+The picture above shows how <<itr2-java-msa-platform-circa,,Java Microservices Platform - Iteration-2>> has been further optimized for https://www.openshift.com[OpenShift], with notable difference of deprecating Netflix Ribbon, as application can rely on  https://www.kubernetes.io[Kubernetes] / https://www.openshift.com[Openshift] for client side load balancing.  As part of the optimization from <<iteration-2>>, many modules/projects are <<itr3-deprecated-modules,deprecated>>.
 
 [[itr3-application-setup]]
 == Setup
@@ -78,32 +81,32 @@ Stream will be used, instead the project will use https://github.com/search?q=or
 | http://zipkin.io/[Distributed Tracing system]
 
 |icon:check[color: green]
-|<<jaeger>>
+|<<itr3-jaeger>>
 | Jaeger already provides OpenShift manifests to deploy the same in OpenShift
 | https://uber.github.io/jaeger/[Jaeger], a high performing OpenTracing based implementation of Distributed Tracing
 
 |icon:check[color: green]
-|<<zuul>>
+|<<itr3-zuul>>
 |*$PROJECT_HOME*/zuul
 | https://github.com/Netflix/zuul/wiki[Java based Proxy]
 
 |icon:check[color: green]
-|<<ingredients>>
+|<<itr3-ingredients>>
 |*$PROJECT_HOME*/ingredients
 |
 
 |icon:check[color: green]
-|<<reporting>>
+|<<itr3-reporting>>
 |*$PROJECT_HOME*/reporting
 |
 
 |icon:check[color: green]
-|<<brewing>>
+|<<itr3-brewing>>
 |*$PROJECT_HOME*/brewing
 |
 
 |icon:check[color: green]
-|<<presenting>>
+|<<itr3-presenting>>
 |*$PROJECT_HOME*/presenting
 |
 
@@ -182,7 +185,7 @@ oc process -f jaeger-all-in-one-template.yml  | oc create -f -
 Please use the template from sources for all-in-deployment of Jaeger, any version above 0.8.0 is not able to display order traces as expected 
 ====
 
-[[zuul]]
+[[itr3-zuul]]
 ==== Zuul
 
 Go to the directory  *$PROJECT_HOME/zuul*, and execute the following command
@@ -231,7 +234,6 @@ Go to the directory  *$PROJECT_HOME/presenting*, and execute the following comma
 ----
 ./mvnw fabric8:deploy
 ----
-
 
 [[itr3-open-issues]]
 == Open Issues

@@ -6,9 +6,12 @@ or https://www.openshift.com[Openshift].  This will have all the components from
 with modifications required :
 
 - Use the Fabric8 Maven Plugin to generate the Kubernetes/OpenShift resources needed to deploy the applications on the platform
-- Design OpenShift templates to deploy RabbitMQ and the different servers such as Eureka, Config-Server, Zipkin, ... (to be discussed)
+- Design OpenShift templates to deploy RabbitMQ and the different servers such as Eureka, Config-Server, Zipkin etc.,to have them deployed on to https://www.openshift.com[Openshift]
 
-to have it deployed on to https://kubernetes.io[Kubernetes] or https://www.openshift.com[Openshift]
+[[itr1-java-msa-platform-circa]]
+image::./iteration-1_java_msa_circa.png[title=Java Microservices,align=center]
+
+The picture above shows a typical Cloud Native Spring Boot Application deployment with one big difference being the undelying platform being https://www.openshift.com[OpenShift] in place of usual https://www.cloudfoundry.org/[CloudFoundry]
 
 [[itr1-application-setup]]
 == Setup
@@ -25,6 +28,26 @@ git clone -b iteration-1 https://github.com/redhat-developer-demos/brewery.git
 ====
 Through out this document we will call the directory where the project was cloned as _$PROJECT_HOME_
 ====
+
+[[itr1-pre-req]]
+== Pre-Requisite
+
+[[itr1-pre-req-rabbitmq]]
+=== RabbitMQ 
+
+The https://hub.docker.com/_/rabbitmq/[RabbimtMQ] container image when run is run using `root` user (UID `0`).  The OpenShift by default does not allow container 
+images to be run with UID `0`. In order to allow that we need to define polices and attach to Kubernetes Service Account, to have better clarity and control 
+we create a separate service account called **brewery** and add the required https://docs.openshift.org/latest/admin_guide/manage_scc.html[Security Context Constraints(SCC)] 
+to allow running the container as UID `0` user.  The following commands adds the required SCC to the service account **brewery**,
+
+[source,sh]
+----
+oc adm policy add-scc-to-user privileged -z brewery <1>
+
+oc adm policy add-scc-to-user anyuid -z brewery  <1>
+----
+
+<1> **brewery** service is created when RabbitMQ is deployed
 
 [[itr1-deployable-apps]]
 == Deploy Applications
