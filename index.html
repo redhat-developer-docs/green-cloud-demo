@@ -533,7 +533,8 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#iteration-1">3. Iteration I</a>
 <ul class="sectlevel2">
 <li><a href="#itr1-application-setup">3.1. Setup</a></li>
-<li><a href="#itr1-deployable-apps">3.2. Deploy Applications</a></li>
+<li><a href="#itr1-pre-req">3.2. Pre-Requisite</a></li>
+<li><a href="#itr1-deployable-apps">3.3. Deploy Applications</a></li>
 </ul>
 </li>
 <li><a href="#iteration-2">4. Iteration II</a>
@@ -603,32 +604,30 @@ to <a href="https://www.openshift.com">OpenShift</a>, i.e. the build process, th
 <div class="title">Figure 1. Short History of Microservices</div>
 </div>
 <div class="paragraph">
-<p>Most of the <a href="https://netflix.github.io/">Netflix OSS</a> components listed above are pretty old and optimized more for AWS, they are prone to some common DevOps
-pain-points for organizations that are starting to adopt DevOps. The migration that will be done as part of this demo will help in alleviating those possible
-DevOps pain-points and provide the organizations a direction on <strong>How to migrate my Spring Boot Application to OpenShift</strong></p>
+<p>Most of the <a href="https://netflix.github.io/">Netflix OSS</a> components listed above are pretty old and were optimized more for AWS. Some of those components are prone to some common DevOps pain-points for organizations starting to adopt DevOps. The migration that will be done as part of this demo will help in alleviating those possible
+DevOps pain-points and provide the organizations a direction on <strong>How to migrate Spring Boot Application to OpenShift</strong></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="app-overview">2.2. App Overview</h3>
 <div class="paragraph">
-<p>In this demo, the <a href="https://github.com/kameshsampath/brewery">Spring Cloud Samples - Brewery</a> will be migrated
-and optimized for OpenShift, during the process of migration the original <a href="https://github.com/spring-cloud-samples/brewery">Spring Cloud Samples - Brewery</a>
-will be modified to make it deployable on to <a href="https://kubernetes.io">Kubernetes</a> or <a href="https://www.openshift.com">Openshift</a>.</p>
+<p>In this demo, the <a href="https://github.com/kameshsampath/brewery">Spring Cloud Samples - Brewery</a> was migrated
+and optimized for <a href="https://www.openshift.com">OpenShift</a>, during the process of migration the original <a href="https://github.com/spring-cloud-samples/brewery">Spring Cloud Samples - Brewery</a>
+was modified to make it deployable on to <a href="https://kubernetes.io">Kubernetes</a> or <a href="https://www.openshift.com">OpenShift</a>.</p>
 </div>
 <div class="paragraph">
-<p>The application will be migrated based on these iterations,</p>
+<p>The application was migrated iteratively,</p>
 </div>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> <a href="#iteration-1">Iteration I</a> - As-is deployment of the <a href="https://github.com/spring-cloud-samples/brewery">Spring Cloud Samples - Brewery</a>
-with no code change.  The Application build process will be modified to enable easier deployment of application on Openshift</p>
+<p><i class="fa fa-check-square-o"></i> <a href="#iteration-1">Iteration I</a> - As-is deployment of the <a href="https://github.com/spring-cloud-samples/brewery">Spring Cloud Samples - Brewery</a> with no code change.  The application build process was be modified to enable easier deployment of application on Openshift</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> <a href="#iteration-2">Iteration II</a> - Will use native OpenShift/Kubernetes features such as service discovery, loadbalancing &amp; externalization of the config</p>
+<p><i class="fa fa-check-square-o"></i> <a href="#iteration-2">Iteration II</a> - Use native <a href="https://kubernetes.io">Kubernetes</a> / <a href="https://www.openshift.com">OpenShift</a> features such as service discovery, loadbalancing &amp; externalization of the config</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> <a href="#iteration-3">Iteration III</a> - Optimizing stacks on OpenShift, like Apache Artemis instead of RabbitMQ, using OpenTracing and Jaeger</p>
+<p><i class="fa fa-check-square-o"></i> <a href="#iteration-3">Iteration III</a> - Optimizing stacks on ttps://www.openshift.com[OpenShift], like Apache Artemis instead of RabbitMQ, using <a href="http://opentracing.io/">OpenTracing</a> and <a href="https://uber.github.io/jaeger/">Jaeger</a></p>
 </li>
 </ul>
 </div>
@@ -637,7 +636,7 @@ with no code change.  The Application build process will be modified to enable e
 <h3 id="default-pre-req">2.3. Pre-Requisite</h3>
 <div class="paragraph">
 <p>You have a OpenShift cluster running locally using <a href="https://docs.openshift.org/latest/minishift/getting-started/index.html"><strong>minishift</strong></a>
-or <a href="https://developers.redhat.com/products/cdk/overview/Op"><strong>CDK</strong></a>, or
+or <a href="https://developers.redhat.com/products/cdk/download/"><strong>CDK</strong></a>, or
 have access to <a href="https://www.openshift.com/container-platform/index.html"><strong>OpenShift Container Platform</strong></a></p>
 </div>
 <div class="paragraph">
@@ -710,12 +709,18 @@ with modifications required :</p>
 <p>Use the Fabric8 Maven Plugin to generate the Kubernetes/OpenShift resources needed to deploy the applications on the platform</p>
 </li>
 <li>
-<p>Design OpenShift templates to deploy RabbitMQ and the different servers such as Eureka, Config-Server, Zipkin, &#8230;&#8203; (to be discussed)</p>
+<p>Design OpenShift templates to deploy RabbitMQ and the different servers such as Eureka, Config-Server, Zipkin etc.,to have them deployed on to <a href="https://www.openshift.com">Openshift</a></p>
 </li>
 </ul>
 </div>
+<div id="itr1-java-msa-platform-circa" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/iteration-1_java_msa_circa.png" alt="iteration 1 java msa circa">
+</div>
+<div class="title">Figure 5. Java Microservices</div>
+</div>
 <div class="paragraph">
-<p>to have it deployed on to <a href="https://kubernetes.io">Kubernetes</a> or <a href="https://www.openshift.com">Openshift</a></p>
+<p>The picture above shows a typical Cloud Native Spring Boot Application deployment with one big difference being the undelying platform being <a href="https://www.openshift.com">OpenShift</a> in place of usual <a href="https://www.cloudfoundry.org/">CloudFoundry</a></p>
 </div>
 <div class="sect2">
 <h3 id="itr1-application-setup">3.1. Setup</h3>
@@ -743,7 +748,34 @@ with modifications required :</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="itr1-deployable-apps">3.2. Deploy Applications</h3>
+<h3 id="itr1-pre-req">3.2. Pre-Requisite</h3>
+<div class="sect3">
+<h4 id="itr1-pre-req-rabbitmq">3.2.1. RabbitMQ</h4>
+<div class="paragraph">
+<p>The <a href="https://hub.docker.com/_/rabbitmq/">RabbimtMQ</a> container image when run is run using <code>root</code> user (UID <code>0</code>).  The OpenShift by default does not allow container
+images to be run with UID <code>0</code>. In order to allow that we need to define polices and attach to Kubernetes Service Account, to have better clarity and control
+we create a separate service account called <strong>brewery</strong> and add the required <a href="https://docs.openshift.org/latest/admin_guide/manage_scc.html">Security Context Constraints(SCC)</a>
+to allow running the container as UID <code>0</code> user.  The following commands adds the required SCC to the service account <strong>brewery</strong>,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">oc adm policy add-scc-to-user privileged -z brewery <i class="conum" data-value="1"></i><b>(1)</b>
+
+oc adm policy add-scc-to-user anyuid -z brewery  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>brewery</strong> service is created when RabbitMQ is deployed</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="itr1-deployable-apps">3.3. Deploy Applications</h3>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. Application List</caption>
 <colgroup>
@@ -824,7 +856,7 @@ with modifications required :</p>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="itr1-build-app">3.2.1. Building</h4>
+<h4 id="itr1-build-app">3.3.1. Building</h4>
 <div class="paragraph">
 <p>Brewery application uses gradle for build, we will leverage on the same to get the application artifacts ready. To build the applicaiton
 run the following command</p>
@@ -849,7 +881,7 @@ run the following command</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="itr1-deploy-to-openshift">3.2.2. Deploying to OpenShift</h4>
+<h4 id="itr1-deploy-to-openshift">3.3.2. Deploying to OpenShift</h4>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -988,10 +1020,19 @@ Since this is the first Java application to be deployed,  it may take some time 
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Iteration II will <a href="#itr2-deprecated-modules">deprecate</a> few of the <a href="https://netflix.github.io/">NetFlix OSS</a> components that are superflous
-inside <a href="https://kubernetes.io">Kubernetes</a> or <a href="https://www.openshift.com">Openshift</a>. The following sections shows how to get
-the Iteration II deployed on to <a href="https://kubernetes.io">Kubernetes</a> or <a href="https://www.openshift.com">Openshift</a>. This iteration
+inside <a href="https://kubernetes.io">Kubernetes</a> or <a href="https://www.openshift.com">OpenShift</a>. The following sections shows how to get
+the Iteration II deployed on to <a href="https://kubernetes.io">Kubernetes</a> or <a href="https://www.openshift.com">OpenShift</a>. This iteration
 uses the <a href="https://github.com/spring-cloud-incubator/spring-cloud-kubernetes">Spring Cloud Kubernetes</a> -
 the <a href="http://projects.spring.io/spring-cloud/">Spring Cloud</a> based discovery client for Kubernetes</p>
+</div>
+<div id="itr2-java-msa-platform-circa" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/iteration-2_java_msa_circa.png" alt="iteration 2 java msa circa">
+</div>
+<div class="title">Figure 6. Java Microservices</div>
+</div>
+<div class="paragraph">
+<p>The picture above shows how <a href="#itr1-java-msa-platform-circa">Java Microservices Platform - Iteration-1</a> has evolved post deployment to <a href="https://www.openshift.com">OpensShift</a>, especially how components like Eureka and Config Server became superflous and has been <a href="#itr2-deprecated-modules">deprecated</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="itr2-application-setup">4.1. Setup</h3>
@@ -1092,7 +1133,7 @@ oc adm policy add-scc-to-user anyuid -z brewery  <i class="conum" data-value="1"
 <tbody>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#rabbitmq">RabbitMQ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr2-rabbitmq">RabbitMQ</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/extras/rabbitmq</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Message Broker - <a href="https://www.rabbitmq.com/" class="bare">https://www.rabbitmq.com/</a></p></td>
 </tr>
@@ -1122,37 +1163,37 @@ oc adm policy add-scc-to-user anyuid -z brewery  <i class="conum" data-value="1"
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#zipkin-server">Zipkin Server</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr2-zipkin-server">Zipkin Server</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/zipkin-server</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://zipkin.io/">Distributed Tracing system</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#zuul">Zuul</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr2-zuul">Zuul</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/zuul</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Netflix/zuul/wiki">Java based Proxy</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#ingredients">Ingredients</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr2-ingredients">Ingredients</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/ingredients</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#reporting">Reporting</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr2-reporting">Reporting</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/reporting</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#brewing">Brewing</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr2-brewing">Brewing</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/brewing</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#presenting">Presenting</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr2-presenting">Presenting</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/presenting</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -1246,7 +1287,7 @@ oc apply -f target/classes/META-INF/fabric8/openshift.yml</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="zuul">Zuul</h5>
+<h5 id="itr2-zuul">Zuul</h5>
 <div class="paragraph">
 <p>Go to the directory  <strong>$PROJECT_HOME/zuul</strong>, and execute the following command</p>
 </div>
@@ -1397,8 +1438,14 @@ use</p>
 </li>
 </ul>
 </div>
+<div id="itr3-java-msa-platform-circa" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/iteration-3_java_msa_circa.png" alt="iteration 3 java msa circa">
+</div>
+<div class="title">Figure 7. Java Microservices</div>
+</div>
 <div class="paragraph">
-<p>This iteration has obsoleted many modules/projects from source tree, refer to the <a href="#itr3-deprecated-modules">deprecate</a> section for more details.</p>
+<p>The picture above shows how <a href="#itr2-java-msa-platform-circa">,Java Microservices Platform - Iteration-2</a> has been further optimized for <a href="https://www.openshift.com">OpenShift</a>, with notable difference of deprecating Netflix Ribbon, as application can rely on  <a href="https://www.kubernetes.io">Kubernetes</a> / <a href="https://www.openshift.com">Openshift</a> for client side load balancing.  As part of the optimization from <a href="#iteration-2">Iteration II</a>, many modules/projects are <a href="#itr3-deprecated-modules">deprecated</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="itr3-application-setup">5.1. Setup</h3>
@@ -1497,37 +1544,37 @@ Stream will be used, instead the project will use <a href="https://github.com/se
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#jaeger">[jaeger]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr3-jaeger">Jaeger Server</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Jaeger already provides OpenShift manifests to deploy the same in OpenShift</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://uber.github.io/jaeger/">Jaeger</a>, a high performing OpenTracing based implementation of Distributed Tracing</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#zuul">Zuul</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr3-zuul">Zuul</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/zuul</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Netflix/zuul/wiki">Java based Proxy</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#ingredients">Ingredients</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr3-ingredients">Ingredients</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/ingredients</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#reporting">Reporting</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr3-reporting">Reporting</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/reporting</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#brewing">Brewing</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr3-brewing">Brewing</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/brewing</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check fa-color: green"></i></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#presenting">Presenting</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#itr3-presenting">Presenting</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$PROJECT_HOME</strong>/presenting</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -1640,7 +1687,7 @@ oc process -f jaeger-all-in-one-template.yml  | oc create -f -</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="zuul">Zuul</h5>
+<h5 id="itr3-zuul">Zuul</h5>
 <div class="paragraph">
 <p>Go to the directory  <strong>$PROJECT_HOME/zuul</strong>, and execute the following command</p>
 </div>
@@ -1963,7 +2010,7 @@ to OpenShift <a href="http://bit.ly/green-cloud-demo">Green Cloud Demo</a></p>
 <div id="footer">
 <div id="footer-text">
 Version {version}<br>
-Last updated 2017-10-30 16:07:03 UTC
+Last updated 2017-11-02 15:58:32 UTC
 </div>
 </div>
 </body>
